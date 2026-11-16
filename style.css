@@ -197,9 +197,10 @@ dialog::backdrop{background:rgba(4,12,24,.85);backdrop-filter:blur(6px)}
 #home .mega{font-size:clamp(34px,5vw,86px)}
 #home .hero-text{max-width:min(54vw,760px)}
 #lab .lab-shade{background:linear-gradient(0deg,rgba(4,12,24,.92) 0%,rgba(4,12,24,.55) 30%,rgba(4,12,24,0) 56%),linear-gradient(90deg,rgba(4,12,24,.55),rgba(4,12,24,0) 45%),linear-gradient(rgba(4,12,24,.6),rgba(4,12,24,0) 16%)}
-#lab .lab-glow{background:radial-gradient(16% 22% at 37% 27%,rgba(63,214,224,.28),transparent 70%)}
+#lab .lab-glow{background:radial-gradient(34% 46% at 78% 44%,rgba(63,214,224,.22),transparent 70%),radial-gradient(10% 12% at 62% 60%,rgba(242,196,90,.3),transparent 70%)}
 @media (max-width:820px){
   #home .hero-text{max-width:none}
   #home .mega{font-size:clamp(30px,9.6vw,64px)}
   #lab .lab-shade{background:linear-gradient(rgba(4,12,24,.5),rgba(4,12,24,0) 14%,rgba(4,12,24,0) 38%,rgba(4,12,24,.9) 60%,rgba(4,12,24,.96))}
 }
+.mega{word-spacing:.14em}

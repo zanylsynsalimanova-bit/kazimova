@@ -87,11 +87,11 @@
     scrollTo({ top: tops[4] + spans[4] * (.1 + .8 * (i + .5) / TL.length) }); });
 
   /* ---------- hero lab layer: zoom into the painted flask, teacher slides aside in depth ---------- */
-  const lab = $("#lab"), bg = $("#lab .lab-bg"), glowL = $("#lab .lab-glow");
-  const FLASK = [.37, .264];          // centre of the circle x²+y²=r² on the board (normalised)
+  const lab = $("#lab"), bg = $("#lab .lab-bg"), teacher = $("#lab .lab-teacher"), glowL = $("#lab .lab-glow");
+  const FLASK = [.624, .6];          // vanishing point of the formula tunnel in the background (normalised)
   let flaskPx = [0, 0];
   function layoutLab() {
-    const W = innerWidth, H = innerHeight, iw = 1600, ih = 900, fx = W < 820 ? .7 : .5;
+    const W = innerWidth, H = innerHeight, iw = 1672, ih = 941, fx = W < 820 ? .62 : .5;
     const s = Math.max(W / iw, H / ih), w = iw * s, h = ih * s, left = Math.min(0, Math.max(W - w, W / 2 - fx * w)), top = (H - h) / 2;
     Object.assign(bg.style, { width: w + "px", height: h + "px", left: left + "px", top: top + "px", objectFit: "fill" });
     bg.style.transformOrigin = `${FLASK[0] * w}px ${FLASK[1] * h}px`;
@@ -104,7 +104,9 @@
     const s = 1 + Math.pow(z, 1.6) * 7, k = Math.min(1, z * 1.15);
     const tx = (W / 2 - flaskPx[0]) * k, ty = (H * .5 - flaskPx[1]) * k;
     bg.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) scale(${s.toFixed(4)})`;
-    glowL.style.opacity = (1 - z).toFixed(3);
+    const tp = sm(0, .62, G), to = 1 - sm(.3, .62, G);       // teacher steps aside in depth and fades
+    teacher.style.transform = `translate3d(${(tp * W * .38).toFixed(1)}px,${(tp * H * .06).toFixed(1)}px,0) scale(${(1 + tp * .35).toFixed(3)})`;
+    teacher.style.opacity = to.toFixed(3); glowL.style.opacity = (1 - z).toFixed(3);
   }
   const sm = (a, b, v) => { const x = Math.min(1, Math.max(0, (v - a) / (b - a))); return x * x * (3 - 2 * x); };
   const panels = scenes.map(s => s.querySelector(".panel"));
