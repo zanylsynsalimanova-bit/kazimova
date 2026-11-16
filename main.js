@@ -87,7 +87,7 @@
     scrollTo({ top: tops[4] + spans[4] * (.1 + .8 * (i + .5) / TL.length) }); });
 
   /* ---------- hero lab layer: zoom into the painted flask, teacher slides aside in depth ---------- */
-  const lab = $("#lab"), bg = $("#lab .lab-bg"), teacher = $("#lab .lab-teacher"), glowL = $("#lab .lab-glow");
+  const lab = $("#lab"), bg = $("#lab .lab-bg"), teacher = $("#lab .lab-teacher"), core = $("#lab .lab-core"), glowL = $("#lab .lab-glow");
   const FLASK = [.624, .6];          // vanishing point of the formula tunnel in the background (normalised)
   let flaskPx = [0, 0];
   function layoutLab() {
@@ -100,10 +100,15 @@
   addEventListener("resize", layoutLab); layoutLab();
   function labFrame(G) {
     const show = G < .93; lab.style.visibility = show ? "visible" : "hidden"; if (!show) return;
-    const W = innerWidth, H = innerHeight, z = sm(.04, .9, G);       // zoom into the circle x²+y²=r² on the board
-    const s = 1 + Math.pow(z, 1.6) * 7, k = Math.min(1, z * 1.15);
+    const W = innerWidth, H = innerHeight, z = sm(.04, .9, G);       // fly into the tunnel's vanishing point
+    // photo zoom is capped (no pixelation); the living glow takes over the dive
+    const s = 1 + Math.pow(z, 1.4) * 1.4, k = Math.min(1, z * 1.15);
     const tx = (W / 2 - flaskPx[0]) * k, ty = (H * .5 - flaskPx[1]) * k;
     bg.style.transform = `translate3d(${tx.toFixed(1)}px,${ty.toFixed(1)}px,0) scale(${s.toFixed(4)})`;
+    bg.style.filter = z > .01 ? `blur(${(z * z * 6).toFixed(2)}px) brightness(${(1 + z * .35).toFixed(3)})` : "";
+    const cs = .7 + Math.pow(z, 3) * 9;
+    core.style.transform = `translate3d(${(flaskPx[0] + tx).toFixed(1)}px,${(flaskPx[1] + ty).toFixed(1)}px,0) scale(${cs.toFixed(3)})`;
+    core.style.opacity = (.75 + z * .25).toFixed(3);
     const tp = sm(0, .62, G), to = 1 - sm(.3, .62, G);       // teacher steps aside in depth and fades
     teacher.style.transform = `translate3d(${(tp * W * .38).toFixed(1)}px,${(tp * H * .06).toFixed(1)}px,0) scale(${(1 + tp * .35).toFixed(3)})`;
     teacher.style.opacity = to.toFixed(3); glowL.style.opacity = (1 - z).toFixed(3);

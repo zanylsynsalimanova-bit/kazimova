@@ -14,13 +14,14 @@
 (function(){var d=document.documentElement;d.classList.add('js');
  if(matchMedia('(prefers-reduced-motion: reduce)').matches||/[?&]static\b/.test(location.search))d.classList.add('static');})();
 </script>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
 <body>
 <a class="skip" href="#about">Мазмұнға өту</a>
 <div id="lab">
   <img class="lab-bg" src="assets/photos/hero-bg.webp" alt="" width="1672" height="941" fetchpriority="high">
+  <div class="lab-core" aria-hidden="true"></div>
   <div class="lab-glow" aria-hidden="true"></div>
   <img class="lab-teacher" src="assets/photos/teacher-cutout.webp" alt="Математика мұғалімі Жансулу Казимова қолында қалам ұстап тұр" width="860" height="947" fetchpriority="high">
   <div class="lab-shade" aria-hidden="true"></div>
@@ -151,7 +152,7 @@
   <div class="v-foot"><p id="viewer-note"></p><div class="v-pages" id="viewer-pages"></div></div>
 </dialog>
 
-<script src="main.js?v=3"></script>
-<script type="module" src="scene3d.js?v=3"></script>
+<script src="main.js?v=4"></script>
+<script type="module" src="scene3d.js?v=4"></script>
 </body>
 </html>

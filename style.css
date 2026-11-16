@@ -204,3 +204,14 @@ dialog::backdrop{background:rgba(4,12,24,.85);backdrop-filter:blur(6px)}
   #lab .lab-shade{background:linear-gradient(rgba(4,12,24,.5),rgba(4,12,24,0) 14%,rgba(4,12,24,0) 38%,rgba(4,12,24,.9) 60%,rgba(4,12,24,.96))}
 }
 .mega{word-spacing:.14em}
+/* living glow at the tunnel's vanishing point (takes over the dive instead of over-zooming the photo) */
+#lab .lab-core{position:absolute;left:0;top:0;width:44vmin;height:44vmin;margin:-22vmin 0 0 -22vmin;border-radius:50%;pointer-events:none;will-change:transform,opacity;mix-blend-mode:screen;
+  background:radial-gradient(circle,#fff 0,#fff3d1 7%,rgba(255,214,120,.85) 18%,rgba(242,170,70,.35) 38%,rgba(63,214,224,.08) 58%,transparent 70%)}
+#lab .lab-core::before{content:"";position:absolute;inset:-60%;border-radius:50%;
+  background:repeating-conic-gradient(from 0deg,rgba(255,224,150,.28) 0 3deg,transparent 3deg 11deg);
+  -webkit-mask:radial-gradient(circle,#000 6%,transparent 62%);mask:radial-gradient(circle,#000 6%,transparent 62%);animation:core-rays 22s linear infinite}
+#lab .lab-core::after{content:"";position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.95),rgba(255,230,160,.4) 40%,transparent 66%);animation:core-pulse 2.8s ease-in-out infinite}
+#lab .lab-core i{display:none}
+@keyframes core-rays{to{transform:rotate(360deg)}}
+@keyframes core-pulse{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.static #lab .lab-core{left:62%;top:60%;opacity:.8}
