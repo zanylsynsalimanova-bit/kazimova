@@ -110,8 +110,8 @@
     core.style.transform = `translate3d(${(flaskPx[0] + tx).toFixed(1)}px,${(flaskPx[1] + ty).toFixed(1)}px,0) scale(${cs.toFixed(3)})`;
     core.style.opacity = (.75 + z * .25).toFixed(3);
     const tp = sm(0, .62, G), to = 1 - sm(.3, .62, G);       // teacher steps aside in depth and fades
-    teacher.style.transform = `translate3d(${(tp * W * .38).toFixed(1)}px,${(tp * H * .06).toFixed(1)}px,0) scale(${(1 + tp * .35).toFixed(3)})`;
-    teacher.style.opacity = to.toFixed(3); glowL.style.opacity = (1 - z).toFixed(3);
+    if (teacher) teacher.style.transform = `translate3d(${(tp * W * .38).toFixed(1)}px,${(tp * H * .06).toFixed(1)}px,0) scale(${(1 + tp * .35).toFixed(3)})`;
+    if (teacher) teacher.style.opacity = to.toFixed(3); glowL.style.opacity = (1 - z).toFixed(3);
   }
   const sm = (a, b, v) => { const x = Math.min(1, Math.max(0, (v - a) / (b - a))); return x * x * (3 - 2 * x); };
   const panels = scenes.map(s => s.querySelector(".panel"));

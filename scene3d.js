@@ -156,8 +156,8 @@ function init() {
     { g: 2.95, p: V(0, mob ? 1.1 : 0, -228), l: V(0, mob ? 1 : 0, -242) },
     { g: 3.3, p: V(0, mob ? 1 : 0, -240), l: V(0, mob ? 1.1 : 0, -252) },
     { g: 3.6, p: V(0, mob ? 1 : 0, -246), l: V(0, mob ? 1.2 : 0, -258) },
-    { g: 4.0, p: V(-7, LY + 2.4, -265), l: V(-1, LY + 1.5, -276) },
-    { g: 5.0, p: V(-7 + TS, LY + 2.4, -265), l: V(-1 + TS, LY + 1.5, -276) },
+    { g: 4.0, p: V(-7, LY + 2.4, -265), l: V(-1, LY + (mob ? -3.3 : 1.5), -276) },
+    { g: 5.0, p: V(-7 + TS, LY + 2.4, -265), l: V(-1 + TS, LY + (mob ? -3.3 : 1.5), -276) },
     { g: 5.45, p: mob ? V(0, 2.2, -288) : V(-.8, .6, -289), l: mob ? SC : V(SC.x - 2.6, SC.y, SC.z) },
     { g: 6.0, p: mob ? V(0, 2.4, -296) : V(-.4, .4, -297.5), l: mob ? SC : V(SC.x - 3.4, SC.y, SC.z) }
   ];
@@ -167,7 +167,7 @@ function init() {
     const A = K[i], B = K[i + 1], t = Math.min(1, Math.max(0, (G - A.g) / (B.g - A.g)));
     let v = 0;
     if (B.cut) { const s = t < .5 ? A : B; tmpP.copy(s.p); tmpL.copy(s.l); v = Math.pow(1 - Math.abs(t - .5) * 2, .7); if (t < .5) tmpP.lerp(tmpL, t * .5); }
-    else if (A.g === 4) { const q = sm(.08, .92, G - 4); tmpP.set(-7 + TS * q, LY + 2.4, -265); tmpL.set(-1 + TS * q, LY + 1.5, -276); }
+    else if (A.g === 4) { const q = sm(.08, .92, G - 4); tmpP.set(-7 + TS * q, LY + 2.4, -265); tmpL.set(-1 + TS * q, LY + (mob ? -3.3 : 1.5), -276); }
     else { const e = t * t * (3 - 2 * t); tmpP.lerpVectors(A.p, B.p, e); tmpL.lerpVectors(A.l, B.l, e); }
     return v;
   }

@@ -216,3 +216,4 @@ dialog::backdrop{background:rgba(4,12,24,.85);backdrop-filter:blur(6px)}
 @keyframes core-pulse{0%,100%{opacity:.5;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
 .static #lab .lab-core{left:62%;top:60%;opacity:.8}
 .hero-actions{margin-top:0}
+.kicker .fx{text-transform:none;font-family:"Cambria Math",Cambria,"Times New Roman",serif;font-style:italic;font-size:1.25em;letter-spacing:.04em}
